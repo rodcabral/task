@@ -14,7 +14,7 @@ int main(int argc, char**argv) {
 
         taskFile.open(".task", std::ios::in);
 
-        std::cout << "\e[0;92m\n" << taskFile.rdbuf() << "\n\n\e[0;39m";
+        std::cout << "\nCurrent Task: \e[0;92m" << taskFile.rdbuf() << "\n\n\e[0;39m";
 
         taskFile.close();
         return 0;
