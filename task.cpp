@@ -6,13 +6,14 @@
 int main(int argc, char**argv) {
     std::fstream taskFile;
 
-    std::string relativePathToFile = std::string(std::getenv("HOME")) + "/.task";
+    std::string relativePath = std::string(std::getenv("HOME"));
+    std::string task = relativePath + "/.task";
 
     if(argc < 2) {
-        if(!std::filesystem::exists(relativePathToFile)) {
+        if(!std::filesystem::exists(task)) {
             std::cout << "You don't have any task!\n";
         } else {
-            taskFile.open(relativePathToFile, std::ios::in);
+            taskFile.open(task, std::ios::in);
 
             std::cout << "\nCurrent Task: \e[0;92m" << taskFile.rdbuf() << "\n\n\e[0;39m";
 
@@ -22,12 +23,13 @@ int main(int argc, char**argv) {
     }
 
     if(std::strncmp(argv[1], "complete", 10) == 0) {
-        remove(relativePathToFile.c_str());
+        remove(task.c_str());
         std::cout << "Task completed!\n";
+        
         return 0;
     }
 
-    taskFile.open(relativePathToFile, std::ios::out);
+    taskFile.open(task, std::ios::out);
 
     taskFile << argv[1];
 
