@@ -64,6 +64,12 @@ int main(int argc, char**argv) {
         return 0;
     }
 
+    if(std::strncmp(argv[1], "remove", 8) == 0) {
+        remove(task.c_str());
+        std::cout << "Removed!\n";
+        return 0;
+    }
+
     taskFile.open(task, std::ios::out);
 
     taskFile << argv[1];
