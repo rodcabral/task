@@ -95,13 +95,17 @@ int main(int argc, char**argv) {
         return 0;
     }
 
-    taskFile.open(task, std::ios::out);
+    if(std::filesystem::exists(task)) {
+        std::cout << "You already have a task, complete or remove to create a new one!\n";
+    } else {
+        taskFile.open(task, std::ios::out);
 
-    taskFile << argv[1];
+        taskFile << argv[1];
 
-    std::cout << "Created!\n";
+        std::cout << "Created!\n";
 
-    taskFile.close();
+        taskFile.close();
+    }
 
     return 0;
 }
