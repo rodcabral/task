@@ -64,6 +64,11 @@ int main(int argc, char**argv) {
     }
 
     if(std::strncmp(argv[1], "remove", 8) == 0) {
+        if(!std::filesystem::exists(task)) {
+            std::cout << "You don't have any task!\n";
+            return 0;
+        }
+
         remove(task.c_str());
         std::cout << "Removed!\n";
         return 0;
